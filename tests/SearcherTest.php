@@ -8,15 +8,27 @@ class SearcherTest extends TestCase
     /**
      * @test
      */
-    public function testCanBeUsedAsString()
+    public function test_can_search_needle()
     {
         $searcher = new Searcher(__DIR__ . DIRECTORY_SEPARATOR . 'fixtures\text.txt');
         $result = $searcher->search('Lorem');
-        $this->assertEquals($result->getNumber(), 0);
-        $this->assertEquals($result->getPosition(), 0);
+        $this->assertEquals(0, $result->getNumber());
+        $this->assertEquals(0, $result->getPosition());
 
         $result = $searcher->search('veniam');
-        $this->assertEquals($result->getNumber(), 2);
-        $this->assertEquals($result->getPosition(), 17);
+        $this->assertEquals(2, $result->getNumber());
+        $this->assertEquals(17, $result->getPosition());
+    }
+
+    /**
+     * @test
+     */
+    public function test_can_load_remote_file()
+    {
+        $searcher = new Searcher('https://raw.githubusercontent.com/Zlob/shtrafomet/master/LICENSE.md');
+        $result = $searcher->search('Samuel ');
+        $this->assertEquals(2, $result->getNumber());
+        $this->assertEquals(19, $result->getPosition());
+
     }
 }
