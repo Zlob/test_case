@@ -10,9 +10,13 @@ class SearcherTest extends TestCase
      */
     public function testCanBeUsedAsString()
     {
-        $searcher = new Searcher();
-        $result = $searcher->search('some', 'fixtures\text.txt');
-        $this->assertEquals($result->getNumber(), 1);
-        $this->assertEquals($result->getPosition(), 1);
+        $searcher = new Searcher(__DIR__ . DIRECTORY_SEPARATOR . 'fixtures\text.txt');
+        $result = $searcher->search('Lorem');
+        $this->assertEquals($result->getNumber(), 0);
+        $this->assertEquals($result->getPosition(), 0);
+
+        $result = $searcher->search('veniam');
+        $this->assertEquals($result->getNumber(), 2);
+        $this->assertEquals($result->getPosition(), 17);
     }
 }

@@ -3,8 +3,28 @@
 
 class Searcher
 {
-    public function search(string $string, $filename)
+
+    /**
+     * @var string
+     */
+    private $filename;
+
+    public function __construct(string $filename)
     {
-        return new Result(1, 1);
+        $this->filename = $filename;
+    }
+
+    public function search(string $needle)
+    {
+        $lineNumber = 0;
+        $handler = fopen($this->filename, 'r');
+        while(!feof($handler))  {
+            $line = fgets($handler);
+            $position = strpos($line, $needle);
+            if ($position !== false) {
+                return new Result($lineNumber, $position);
+            }
+            $lineNumber++;
+        }
     }
 }
