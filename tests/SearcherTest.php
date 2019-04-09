@@ -10,7 +10,7 @@ class SearcherTest extends TestCase
      */
     public function test_can_search_needle()
     {
-        $searcher = new Searcher(__DIR__ . DIRECTORY_SEPARATOR . 'fixtures\text.txt');
+        $searcher = new StringPositionDetector(__DIR__ . DIRECTORY_SEPARATOR . 'fixtures\text.txt');
         $result = $searcher->search('Lorem');
         $this->assertEquals(0, $result->getNumber());
         $this->assertEquals(0, $result->getPosition());
@@ -25,7 +25,7 @@ class SearcherTest extends TestCase
      */
     public function test_can_load_remote_file()
     {
-        $searcher = new Searcher('https://raw.githubusercontent.com/Zlob/shtrafomet/master/LICENSE.md');
+        $searcher = new StringPositionDetector('https://raw.githubusercontent.com/Zlob/shtrafomet/master/LICENSE.md');
         $result = $searcher->search('Samuel ');
         $this->assertEquals(2, $result->getNumber());
         $this->assertEquals(19, $result->getPosition());
