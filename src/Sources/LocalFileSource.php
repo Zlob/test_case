@@ -1,51 +1,29 @@
 <?php
 
+
 namespace Searcher\Sources;
 
-class LocalFileSource implements \Iterator
+
+use Iterator;
+
+class LocalFileSource implements iSource
 {
 
     protected $file;
-    protected $data;
-    protected $key;
 
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         $this->file = fopen($filename, 'r');
         if (!$this->file) {
-            throw new \InvalidArgumentException('$filename must be valid path to file');
+            throw new \InvalidArgumentException();
         }
     }
 
-    public function __destruct() {
+    function getIterator(): Iterator
+    {
+        while ($line = fgets($this->file)) {
+            yield $line;
+        }
         fclose($this->file);
-    }
-
-    public function current()
-    {
-        return fgets($this->file);
-    }
-
-    public function next()
-    {
-        $this->data = fgets($this->file);
-        $this->key++;
-    }
-
-    public function key()
-    {
-        return $this->key;
-    }
-
-    public function valid()
-    {
-        return false !== $this->data;
-    }
-
-    public function rewind()
-    {
-        fseek($this->file, 0);
-        $this->data = fgets($this->file);
-        $this->key = 0;
     }
 }

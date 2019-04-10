@@ -10,8 +10,6 @@ use Searcher\SearchTypes\iSearchType;
 
 class SearchByRegexp implements iSearchType
 {
-    const DELIMITER = '/';
-
     public function search(string $where, string $what): iSearchResult
     {
         $matches = [];
@@ -27,6 +25,6 @@ class SearchByRegexp implements iSearchType
 
     private function correctRegexp($regexp)
     {
-        return preg_match('\/.+\/', $regexp);
+        return preg_match('/\/.+\//', $regexp);
     }
 }

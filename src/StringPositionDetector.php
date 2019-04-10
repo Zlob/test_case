@@ -4,41 +4,36 @@ namespace Searcher;
 
 use Searcher\Results\Result;
 use Searcher\SearchTypes\iSearchType;
+use Searcher\Sources\iSource;
 
 class StringPositionDetector
 {
 
     /**
-     * @var string
+     * @var iSource
      */
-    private $filename;
+    private $source;
     /**
      * @var iSearchType
      */
     private $searchType;
 
-    public function __construct(string $filename, iSearchType $searchType)
+    public function __construct(iSource $source, iSearchType $searchType)
     {
-        $this->filename = $filename;
+        $this->source = $source;
         $this->searchType = $searchType;
     }
 
     public function search(string $needle)
     {
-        $lineNumber = 0;
-        $handle = fopen($this->filename, 'r');
-        if ($handle) {
-            while(!feof($handle))  {
-                $line = fgets($handle);
-                $positionInLine = $this->searchType->search($line, $needle);
-                if ($positionInLine->isFound() !== false) {
-                    fclose($handle);
-                    return new Result($lineNumber, $positionInLine->position());
-                }
-                $lineNumber++;
+        $index = 0;
+        $lines = $this->source->getIterator();
+        foreach ($lines as $line) {
+            $positionInLine = $this->searchType->search($line, $needle);
+            if ($positionInLine->isFound()) {
+                return new Result($index, $positionInLine->position());
             }
-        } else {
-            //todo throw exception
+            $index++;
         }
     }
 }
