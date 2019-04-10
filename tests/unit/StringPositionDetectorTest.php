@@ -3,7 +3,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class StringPositionDetectorTest extends TestCase
+class StringPositionDetectorUnitTest extends TestCase
 {
     /**
      * @test
