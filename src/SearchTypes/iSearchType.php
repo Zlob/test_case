@@ -2,9 +2,9 @@
 
 namespace Searcher\SearchTypes;
 
-use Searcher\Results\Line\iSearchResult;
+use Searcher\Results\Line\iLineSearchResult;
 
 interface iSearchType
 {
-    public function search(string $where, string $what): iSearchResult;
+    public function search(string $where, string $what): iLineSearchResult;
 }

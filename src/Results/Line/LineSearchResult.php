@@ -2,7 +2,7 @@
 
 namespace Searcher\Results\Line;
 
-class LineSearchResult implements iSearchResult
+class LineSearchResult implements iLineSearchResult
 {
     private $position;
 
@@ -16,7 +16,7 @@ class LineSearchResult implements iSearchResult
         return $this->position !== null;
     }
 
-    public function position(): int
+    public function charPosition(): int
     {
         return $this->position;
     }

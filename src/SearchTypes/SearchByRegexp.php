@@ -3,14 +3,14 @@
 namespace Searcher;
 
 use Searcher\Exceptions\WrongNeedle;
-use Searcher\Results\Line\iSearchResult;
+use Searcher\Results\Line\iLineSearchResult;
 use Searcher\Results\Line\LineSearchResult;
-use Searcher\Results\Line\NullLineSearchResult;
+use Searcher\Results\Line\NullLineLineSearchResult;
 use Searcher\SearchTypes\iSearchType;
 
 class SearchByRegexp implements iSearchType
 {
-    public function search(string $where, string $what): iSearchResult
+    public function search(string $where, string $what): iLineSearchResult
     {
         $matches = [];
         if (!$this->correctRegexp($what)) {
@@ -19,7 +19,7 @@ class SearchByRegexp implements iSearchType
         if (preg_match($what, $where, $matches, PREG_OFFSET_CAPTURE) === 1) {
             return new LineSearchResult($matches[0][1]);
         } else {
-            return new NullLineSearchResult();
+            return new NullLineLineSearchResult();
         };
     }
 

@@ -2,14 +2,14 @@
 
 namespace Searcher\Results\Line;
 
-class NullLineSearchResult implements iSearchResult
+class NullLineLineSearchResult implements iLineSearchResult
 {
     public function isFound(): bool
     {
         return false;
     }
 
-    public function position(): int
+    public function charPosition(): int
     {
         return 0;
     }

@@ -2,9 +2,9 @@
 
 namespace Searcher\Results\Line;
 
-interface iSearchResult
+interface iLineSearchResult
 {
     public function isFound(): bool;
 
-    public function position(): int;
+    public function charPosition(): int;
 }
