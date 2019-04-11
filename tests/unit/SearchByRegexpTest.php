@@ -14,11 +14,11 @@ class SearchByRegexpTest extends TestCase
         $line = 'Lorem ipsum dolor sit amet, consectetur 2019 adipiscing elit,';
         $result = $searchType->search($line, '/ipsum/');
         $this->assertEquals(true, $result->isFound());
-        $this->assertEquals(6, $result->position());
+        $this->assertEquals(6, $result->charPosition());
 
         $result = $searchType->search($line, '/\d+/');
         $this->assertEquals(true, $result->isFound());
-        $this->assertEquals(40, $result->position());
+        $this->assertEquals(40, $result->charPosition());
     }
 
     /**
@@ -30,7 +30,7 @@ class SearchByRegexpTest extends TestCase
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';
         $result = $searchType->search($line, '/sometext/');
         $this->assertEquals(false, $result->isFound());
-        $this->assertEquals(0, $result->position());
+        $this->assertEquals(0, $result->charPosition());
     }
 
 

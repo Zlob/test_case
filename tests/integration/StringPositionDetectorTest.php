@@ -16,11 +16,16 @@ class StringPositionDetectorTest extends TestCase
         $detector = new \Searcher\StringPositionDetector($source, $searcher);
 
         $result = $detector->search('ipsum');
-        $this->assertEquals(0, $result->getNumber());
-        $this->assertEquals(6, $result->getPosition());
+        $this->assertEquals(true, $result->isFound());
+        $this->assertEquals(0, $result->lineNumber());
+        $this->assertEquals(6, $result->charPosition());
 
         $result = $detector->search('eiusmod');
-        $this->assertEquals(0, $result->getNumber());
-        $this->assertEquals(7, $result->getPosition());
+        $this->assertEquals(true, $result->isFound());
+        $this->assertEquals(0, $result->lineNumber());
+        $this->assertEquals(7, $result->charPosition());
+
+        $result = $detector->search('sometext');
+        $this->assertEquals(false, $result->isFound());
     }
 }

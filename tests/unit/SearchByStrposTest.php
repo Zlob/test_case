@@ -14,11 +14,11 @@ class SearcherTest extends TestCase
         $line = 'Lorem ipsum dolor sit amet, consectetur 2019 adipiscing elit,';
         $result = $searchType->search($line, 'Lorem');
         $this->assertEquals(true, $result->isFound());
-        $this->assertEquals(0, $result->position());
+        $this->assertEquals(0, $result->charPosition());
 
         $result = $searchType->search($line, 'amet');
         $this->assertEquals(true, $result->isFound());
-        $this->assertEquals(22, $result->position());
+        $this->assertEquals(22, $result->charPosition());
     }
 
     /**
@@ -30,6 +30,6 @@ class SearcherTest extends TestCase
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';
         $result = $searchType->search($line, 'sometext');
         $this->assertEquals(false, $result->isFound());
-        $this->assertEquals(0, $result->position());
+        $this->assertEquals(0, $result->charPosition());
     }
 }

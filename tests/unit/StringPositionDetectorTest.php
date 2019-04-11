@@ -12,9 +12,9 @@ class StringPositionDetectorUnitTest extends TestCase
     {
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 ';
-        $successResult = $this->createMock(\Searcher\Results\Line\iSearchResult::class);
+        $successResult = $this->createMock(\Searcher\Results\Line\iLineSearchResult::class);
         $successResult->method('isFound')->willReturn(true);
-        $successResult->method('position')->willReturn(6);
+        $successResult->method('charPosition')->willReturn(6);
 
         $searcher = $this->createMock(\Searcher\SearchTypes\iSearchType::class);
         $searcher->method('search')
@@ -31,7 +31,8 @@ class StringPositionDetectorUnitTest extends TestCase
         $detector = new \Searcher\StringPositionDetector($source, $searcher);
         $result = $detector->search('ipsum');
 
-        $this->assertEquals(0, $result->getNumber());
-        $this->assertEquals(6, $result->getPosition());
+        $this->assertEquals(true, $result->isFound());
+        $this->assertEquals(0, $result->lineNumber());
+        $this->assertEquals(6, $result->charPosition());
     }
 }
