@@ -11,3 +11,21 @@ mime-type, и т.п.). Желательно их вынести в отдель�
 хэш-суммы, и т.п.)
 - [x] Дополнительно: сделать возможность читать данные не только с локальной
 файловой системы, но и удаленной.
+
+
+Пример использования
+
+```php
+//Задаем источник данных
+$source = new \Searcher\Sources\LocalFileSource('path_to_file.txt');
+//Задаем тип поиска
+$searchType = new \Searcher\SearchTypes\SearchByStrpos();
+//Инициализируем объект поиска
+$detector = new \Searcher\StringPositionDetector($source, $searchType);
+
+//Результаты поиска
+$result = $detector->search('needle');
+$result->isFound();
+$result->lineNumber();
+$result->charPosition();
+```
