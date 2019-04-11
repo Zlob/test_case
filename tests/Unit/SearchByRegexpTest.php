@@ -9,7 +9,7 @@ class SearchByRegexpTest extends TestCase
     /**
      * @test
      */
-    public function can_search_existent_needle()
+    public function return_result_if_needle_exist()
     {
         $searchType = new \Searcher\SearchByRegexp();
         $line = 'Lorem ipsum dolor sit amet, consectetur 2019 adipiscing elit,';
@@ -25,7 +25,7 @@ class SearchByRegexpTest extends TestCase
     /**
      * @test
      */
-    public function cant_search_nonexistent_needle()
+    public function return_null_object_if_needle_does_not_exist()
     {
         $searchType = new \Searcher\SearchByRegexp();
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';
@@ -35,7 +35,7 @@ class SearchByRegexpTest extends TestCase
     }
 
 
-    public function cant_work_with_wrong_regexp()
+    public function throw_exception_if_regexp_is_invalid()
     {
         $searchType = new \Searcher\SearchByRegexp();
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';

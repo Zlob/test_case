@@ -9,7 +9,7 @@ class SearcherTest extends TestCase
     /**
      * @test
      */
-    public function can_search_existent_needle()
+    public function return_result_if_needle_exist()
     {
         $searchType = new \Searcher\SearchTypes\SearchByStrpos();
         $line = 'Lorem ipsum dolor sit amet, consectetur 2019 adipiscing elit,';
@@ -25,7 +25,7 @@ class SearcherTest extends TestCase
     /**
      * @test
      */
-    public function cant_search_nonexistent_needle()
+    public function return_null_object_if_needle_does_not_exist()
     {
         $searchType = new \Searcher\SearchTypes\SearchByStrpos();
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';

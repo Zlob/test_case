@@ -9,7 +9,7 @@ class StringPositionDetectorTest extends TestCase
     /**
      * @test
      */
-    public function can_search_needle()
+    public function return_result_if_needle_exist()
     {
         $line = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 ';
