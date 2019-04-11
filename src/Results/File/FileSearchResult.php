@@ -1,8 +1,10 @@
 <?php
 
-namespace Searcher\Results;
+namespace Searcher\Results\File;
 
-class Result
+use Searcher\Results\Line\iFileSearchResult;
+
+class FileSearchResult implements iFileSearchResult
 {
     /**
      * @var int
@@ -13,6 +15,11 @@ class Result
      */
     private $position;
 
+    /**
+     * FileSearchResult constructor.
+     * @param int $number
+     * @param int $position
+     */
     public function __construct(int $number, int $position)
     {
         $this->number = $number;
@@ -22,7 +29,7 @@ class Result
     /**
      * @return int
      */
-    public function getPosition(): int
+    public function charPosition(): int
     {
         return $this->position;
     }
@@ -30,9 +37,16 @@ class Result
     /**
      * @return int
      */
-    public function getNumber(): int
+    public function lineNumber(): int
     {
         return $this->number;
     }
 
+    /**
+     * @return bool
+     */
+    public function isFound(): bool
+    {
+        return true;
+    }
 }
