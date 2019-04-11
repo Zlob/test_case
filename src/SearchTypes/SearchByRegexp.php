@@ -10,6 +10,13 @@ use Searcher\SearchTypes\iSearchType;
 
 class SearchByRegexp implements iSearchType
 {
+    /**
+     * Поиск вхождения строки по регулярному выражению
+     *
+     * @param string $where
+     * @param string $what
+     * @return iLineSearchResult
+     */
     public function search(string $where, string $what): iLineSearchResult
     {
         $matches = [];
@@ -20,9 +27,15 @@ class SearchByRegexp implements iSearchType
             return new LineSearchResult($matches[0][1]);
         } else {
             return new NullLineLineSearchResult();
-        };
+        }
     }
 
+    /**
+     * Проверка переданного регулярного выражения на корректность
+     *
+     * @param $regexp
+     * @return false|int
+     */
     private function correctRegexp($regexp)
     {
         return preg_match('/\/.+\//', $regexp);

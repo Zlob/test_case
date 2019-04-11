@@ -9,6 +9,13 @@ use Searcher\Results\Line\NullLineLineSearchResult;
 
 class SearchByStrpos implements iSearchType
 {
+    /**
+     * Поиск вхождения строки
+     *
+     * @param string $where
+     * @param string $what
+     * @return iLineSearchResult
+     */
     public function search(string $where, string $what): iLineSearchResult
     {
         $position = strpos($where, $what);

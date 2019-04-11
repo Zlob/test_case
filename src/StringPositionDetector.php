@@ -13,10 +13,15 @@ class StringPositionDetector
 {
 
     /**
+     * Источник данных
+     *
      * @var iSource
      */
     private $source;
+
     /**
+     * Способ поиска
+     *
      * @var iSearchType
      */
     private $searchType;
@@ -33,6 +38,12 @@ class StringPositionDetector
         $this->searchType = $searchType;
     }
 
+    /**
+     * Поиск вхождения строки в файле
+     *
+     * @param string $needle
+     * @return iFileSearchResult
+     */
     public function search(string $needle): iFileSearchResult
     {
         $index = 0;
