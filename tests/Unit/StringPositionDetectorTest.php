@@ -1,9 +1,10 @@
 <?php
 
+namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-class StringPositionDetectorUnitTest extends TestCase
+class StringPositionDetectorTest extends TestCase
 {
     /**
      * @test
@@ -21,7 +22,7 @@ class StringPositionDetectorUnitTest extends TestCase
             ->with($line, 'ipsum')
             ->willReturn($successResult);
 
-        $iterator = $this->createMock(Iterator::class);
+        $iterator = $this->createMock(\Iterator::class);
         $iterator->method('current')->willReturn($line);
         $iterator->method('valid')->willReturn(true);
 
